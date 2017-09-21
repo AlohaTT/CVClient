@@ -1,12 +1,8 @@
 package layout;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -66,7 +62,18 @@ public class NewsFragment extends Fragment {
 
                     @Override
                     public Fragment getItem(int position) {
-                        return new Fragment2();
+                        NewsListFragment newsListFragment = new NewsListFragment();
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(position);
+                            int columnID = jsonObject.getInt("pk");
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("columnID",columnID);
+                            newsListFragment.setArguments(bundle);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        return newsListFragment;
                     }
 
                     @Override

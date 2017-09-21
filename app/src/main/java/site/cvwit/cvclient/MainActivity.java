@@ -1,5 +1,6 @@
 package site.cvwit.cvclient;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import layout.NewsFragment;
-import layout.Fragment2;
+import layout.NewsListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -94,8 +95,8 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.main_fragment, fragment1);
             transaction.commit();
         } else if (id == R.id.nav_gallery) {
-            Fragment2 fragment2 = new Fragment2();
-            transaction.replace(R.id.main_fragment, fragment2);
+            NewsListFragment newsListFragment = new NewsListFragment();
+            transaction.replace(R.id.main_fragment, newsListFragment);
             transaction.commit();
 
         } else if (id == R.id.nav_slideshow) {
