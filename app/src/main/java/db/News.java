@@ -6,9 +6,27 @@ package db;
 
 public class News {
     private String title;
+    private String slug;
     private String author;
     private int columnID;
     private String Image;
+    private int pk;
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
 
     public String getImage() {
         return Image;
