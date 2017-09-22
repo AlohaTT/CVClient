@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(Build.VERSION.SDK_INT>=21){
+        if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         setContentView(R.layout.activity_main);
@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
@@ -94,16 +96,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-
         if (id == R.id.nav_camera) {
             // Handle the camera action
             NewsFragment fragment1 = new NewsFragment();
             transaction.replace(R.id.main_fragment, fragment1);
             transaction.commit();
         } else if (id == R.id.nav_gallery) {
-            NewsListFragment newsListFragment = new NewsListFragment();
-            transaction.replace(R.id.main_fragment, newsListFragment);
+            NewsFragment fragment1 = new NewsFragment();
+            transaction.replace(R.id.main_fragment, fragment1);
             transaction.commit();
 
         } else if (id == R.id.nav_slideshow) {

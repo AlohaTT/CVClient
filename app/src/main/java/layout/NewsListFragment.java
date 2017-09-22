@@ -69,7 +69,9 @@ public class NewsListFragment extends Fragment {
                 bundle.putString("slug", slug);
                 newsDetailFragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction().add(R.id.news_fragment, newsDetailFragment);
+                FragmentTransaction transaction = fragmentManager.beginTransaction().replace(R.id.news_fragment, newsDetailFragment);
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
